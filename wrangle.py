@@ -103,6 +103,7 @@ def split_data(df, target_variable):
 import matplotlib.pyplot as plt
 from scipy import stats
 
+
 def county_sqft_test(X_train):
     """
     Performs a hypothesis test to determine if there is a significant difference
@@ -130,19 +131,20 @@ def county_sqft_test(X_train):
     plt.ylabel('Mean finished square feet')
     plt.show()
 
-    # Perform a t-test to determine if the mean finished square feet for different counties are significantly different
-    t_stat, p_value = stats.f_oneway(X_train.loc[X_train['fips'] == 6037, 'calculatedfinishedsquarefeet'],
-                                     X_train.loc[X_train['fips'] == 6111, 'calculatedfinishedsquarefeet'],
-                                     X_train.loc[X_train['fips'] == 6059, 'calculatedfinishedsquarefeet'])
+    # Perform an ANOVA test to determine if the mean finished square feet for different counties are significantly different
+    F_statistic, p_value = stats.f_oneway(X_train.loc[X_train['fips'] == 6037, 'calculatedfinishedsquarefeet'],
+                                          X_train.loc[X_train['fips'] == 6111, 'calculatedfinishedsquarefeet'],
+                                          X_train.loc[X_train['fips'] == 6059, 'calculatedfinishedsquarefeet'])
 
-    # Interpret the results of the t-test
+    # Interpret the results of the ANOVA test
     alpha = 0.05 # significance level
-    print(f"F-statistic: {t_stat:.2f}")
+    print(f"F-statistic: {F_statistic:.2f}")
     print(f"p-value: {p_value:.2f}")
     if p_value < alpha:
         print(f"Reject null hypothesis. {alt_hypothesis}")
     else:
         print(f"Fail to reject null hypothesis. {null_hypothesis}")
+
 
 
 import matplotlib.pyplot as plt
