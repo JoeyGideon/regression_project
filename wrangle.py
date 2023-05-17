@@ -370,7 +370,7 @@ def glm_tweedie(X_train, y_train, X_validate, y_validate):
     
     return glm, rmse_train, rmse_validate
 
-def polynomial_regression(X_train, y_train, X_validate, y_validate, degree=1):
+def polynomial_regression_1(X_train, y_train, X_validate, y_validate, degree=1):
     """
     This function takes in the features (X_train), target (y_train), 
     features (X_validate), and target (y_validate), fits a polynomial 
